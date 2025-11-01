@@ -5,11 +5,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 
+from pages.manager_page import ManagerPage
 from config import Settings
 
 @pytest.fixture
 def chromium_page(settings: Settings):
     chrome_options = Options()
+    if settings.headless:
+        chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--start-maximized")
@@ -22,3 +25,7 @@ def chromium_page(settings: Settings):
     )
     yield driver
     driver.quit()
+
+@pytest.fixture
+def manager_page(chromium_page):
+    return ManagerPage(driver=chromium_page)
