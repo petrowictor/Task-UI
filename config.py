@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     )
 
     app_url: HttpUrl
+    headless: bool
+    timeout: float
 
     @classmethod
     def initialize(cls) -> Self:

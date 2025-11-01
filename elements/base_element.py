@@ -11,10 +11,9 @@ from tools.logger import get_logger
 logger = get_logger("BASE_ELEMENT")
 
 class BaseElement:
-    def __init__(self, driver: WebDriver, name: str, attribute: str, locator: str):
+    def __init__(self, driver: WebDriver, name: str, locator: str):
         self.driver = driver
         self.name = name
-        self.attribute = attribute
         self.locator = locator
         self._wait = WebDriverWait(driver, 10)
         self.seconds_wait = 0
@@ -26,26 +25,39 @@ class BaseElement:
     def wait(self, seconds=3):
         start_time = time.time()
         self._wait.until(lambda driver: (time.time() - start_time) >= seconds)
-    
-    def get_locator(self, **kwargs):
+
+    def wait_for_all_elements(self, **kwargs):
         locator = self.locator.format(**kwargs)
-        step = f'Getting locator with "{self.attribute} = {locator}"'
+        WebDriverWait(self.driver, 15).until(
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR, locator))
+            )
+
+    def get_locator(self, nth: int = 0, **kwargs):
+        locator = self.locator.format(**kwargs)
+        step = f'Getting locator with {locator} at index "{nth}"'
 
         with allure.step(step):
-            logger.info(step)
-            element = self.driver.find_element(By.CSS_SELECTOR, f"[{self.attribute}='{locator}']")
-            wait_element = self._wait.until(EC.visibility_of(element))
+            self.wait_for_all_elements(locator=locator)
+            element = self.driver.find_elements(By.CSS_SELECTOR, locator)[nth]
             self.wait(self.seconds_wait)
-            return wait_element
+            return element
 
-    def click(self, **kwargs):
-        step = f'Clicking on element {self.type_of} "{self.name}"'
+    def click(self, nth: int = 0, **kwargs):
+        step = f'Clicking {self.type_of} "{self.name}"'
 
         with allure.step(step):
-            locator = self.get_locator(**kwargs)
+            locator = self.get_locator(nth,**kwargs)
             logger.info(step)
             self._wait.until(EC.element_to_be_clickable(locator))
             try:
                 locator.click()
             except ElementClickInterceptedException:
                 logger.info("Click submit failed")
+            self.wait(self.seconds_wait)
+
+    def get_text(self, nth: int = 0, **kwargs):
+        step = f'Gettig text {self.name}'
+        with allure.step(step):
+            locator = self.get_locator(nth,**kwargs)
+            logger.info(step)
+            return locator.text
