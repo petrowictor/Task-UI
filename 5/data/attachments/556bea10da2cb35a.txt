@@ -1,0 +1,2 @@
+INFO     BASE_ELEMENT:base_element.py:50 Clicking Button "Customers"
+INFO     BASE_ELEMENT:base_element.py:50 Clicking Button "button-delete-customer"

@@ -1,0 +1,3 @@
+2025-11-01 09:41:49,660 | BASE_ELEMENT | INFO | Clicking Button "Customers"
+2025-11-01 09:41:50,241 | BASE_ELEMENT | INFO | Clicking Button "Sort-First-Name"
+2025-11-01 09:41:50,387 | BASE_ELEMENT | INFO | Clicking Button "Sort-First-Name"
