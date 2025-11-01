@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","2591","test_add_customer","tests","Sat Nov 01 09:23:50 GMT 2025","passed","Sat Nov 01 09:23:52 GMT 2025","TestCases","test_cases","",""
+"","892","test_sort_customers","tests","Sat Nov 01 09:23:53 GMT 2025","passed","Sat Nov 01 09:23:54 GMT 2025","TestCases","test_cases","",""
+"","771","test_delete_customer","tests","Sat Nov 01 09:23:55 GMT 2025","passed","Sat Nov 01 09:23:56 GMT 2025","TestCases","test_cases","",""
