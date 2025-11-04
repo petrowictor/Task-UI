@@ -16,6 +16,8 @@ def chromium_page(settings: Settings):
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.add_argument('--ignore-ssl-errors')
     chrome_options.page_load_strategy = 'normal'
     
     driver = webdriver.Chrome(options=chrome_options)
