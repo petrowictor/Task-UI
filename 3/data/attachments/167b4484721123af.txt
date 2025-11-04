@@ -1,7 +1,0 @@
-2025-11-01 09:23:50,154 | BASE_ELEMENT | INFO | Clicking Button "Add-Customer"
-2025-11-01 09:23:50,945 | Input | INFO | Fill input "First-Name" to value "osmjy"
-2025-11-01 09:23:51,273 | Input | INFO | Fill input "Last-Name" to value "Testov"
-2025-11-01 09:23:51,321 | Input | INFO | Fill input "Post-Code" to value "6670900950"
-2025-11-01 09:23:51,370 | BASE_ELEMENT | INFO | Clicking Button "Add-Customer"
-2025-11-01 09:23:51,979 | ALERT | INFO | Check Alert is present
-2025-11-01 09:23:52,097 | BASE_ELEMENT | INFO | Clicking Button "Customers"

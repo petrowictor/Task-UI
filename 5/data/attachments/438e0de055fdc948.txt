@@ -1,7 +1,0 @@
-2025-11-01 09:41:46,295 | BASE_ELEMENT | INFO | Clicking Button "Add-Customer"
-2025-11-01 09:41:46,990 | Input | INFO | Fill input "First-Name" to value "duxpg"
-2025-11-01 09:41:47,342 | Input | INFO | Fill input "Last-Name" to value "Testov"
-2025-11-01 09:41:47,390 | Input | INFO | Fill input "Post-Code" to value "8146491584"
-2025-11-01 09:41:47,440 | BASE_ELEMENT | INFO | Clicking Button "Add-Customer"
-2025-11-01 09:41:47,873 | ALERT | INFO | Check Alert is present
-2025-11-01 09:41:47,903 | BASE_ELEMENT | INFO | Clicking Button "Customers"

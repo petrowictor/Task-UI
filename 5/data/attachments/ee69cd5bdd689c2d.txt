@@ -1,3 +1,0 @@
-INFO     BASE_ELEMENT:base_element.py:50 Clicking Button "Customers"
-INFO     BASE_ELEMENT:base_element.py:50 Clicking Button "Sort-First-Name"
-INFO     BASE_ELEMENT:base_element.py:50 Clicking Button "Sort-First-Name"

@@ -1,7 +1,0 @@
-INFO     BASE_ELEMENT:base_element.py:50 Clicking Button "Add-Customer"
-INFO     Input:input.py:17 Fill input "First-Name" to value "duxpg"
-INFO     Input:input.py:17 Fill input "Last-Name" to value "Testov"
-INFO     Input:input.py:17 Fill input "Post-Code" to value "8146491584"
-INFO     BASE_ELEMENT:base_element.py:50 Clicking Button "Add-Customer"
-INFO     ALERT:alert.py:19 Check Alert is present
-INFO     BASE_ELEMENT:base_element.py:50 Clicking Button "Customers"

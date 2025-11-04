@@ -1,2 +1,0 @@
-2025-11-01 09:41:51,638 | BASE_ELEMENT | INFO | Clicking Button "Customers"
-2025-11-01 09:41:52,301 | BASE_ELEMENT | INFO | Clicking Button "button-delete-customer"
