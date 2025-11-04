@@ -1,5 +1,4 @@
 from typing import Self
-from pytest_check import check
 from pages.base_page import BasePage
 from elements.base_element import BaseElement
 from tools.helpers import find_deleted_name
