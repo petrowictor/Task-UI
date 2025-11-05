@@ -1,12 +1,13 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
 
-from pages.manager_page import ManagerPage
 from config import Settings
+from pages.manager_page import ManagerPage
+
 
 @pytest.fixture
 def chromium_page(settings: Settings):
@@ -16,6 +17,8 @@ def chromium_page(settings: Settings):
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--start-maximized")
+    chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.add_argument('--ignore-ssl-errors')
     chrome_options.page_load_strategy = 'normal'
     
     driver = webdriver.Chrome(options=chrome_options)
