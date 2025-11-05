@@ -1,10 +1,14 @@
-import allure
 import time
+
+import allure
+from selenium.common.exceptions import (
+    ElementClickInterceptedException,
+    NoAlertPresentException,
+)
+from selenium.webdriver.common.by import By
 from selenium.webdriver.ie.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import ElementClickInterceptedException, NoAlertPresentException
 
 from tools.helpers import get_logger
 
@@ -15,6 +19,8 @@ class BaseElement:
         self.driver = driver
         self.name = name
         self.locator = locator
+        self.by = locator[0]
+        self.value = locator[1]
         self._wait = WebDriverWait(driver, 10)
         self.seconds_wait = 0
 
@@ -23,18 +29,18 @@ class BaseElement:
         self._wait.until(lambda driver: (time.time() - start_time) >= seconds)
 
     def wait_for_all_elements(self, **kwargs):
-        locator = self.locator.format(**kwargs)
+        locator = self.value.format(**kwargs)
         WebDriverWait(self.driver, 15).until(
-                EC.presence_of_all_elements_located((By.CSS_SELECTOR, locator))
+                EC.presence_of_all_elements_located((self.by, locator))
             )
 
     def get_locator(self, nth: int = 0, **kwargs):
-        locator = self.locator.format(**kwargs)
+        locator = self.value.format(**kwargs)
         step = f'Getting locator with {locator} at index "{nth}"'
 
         with allure.step(step):
             self.wait_for_all_elements(locator=locator)
-            element = self.driver.find_elements(By.CSS_SELECTOR, locator)[nth]
+            element = self.driver.find_elements(self.by, locator)[nth]
             self.wait(self.seconds_wait)
             return element
 

@@ -1,26 +1,27 @@
 from typing import Self
-from pages.base_page import BasePage
+
+import locators.manager_locators as Locators
 from elements.base_element import BaseElement
+from pages.base_page import BasePage
 from tools.helpers import find_deleted_name
 
-from selenium.webdriver.common.by import By
 
 class ManagerPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 
-        self.bt_addCust = BaseElement(driver, "Add-Customer", '[ng-class="btnClass1"]')
-        self.post_code = BaseElement(driver, "Post-Code", "[ng-model='postCd']")
-        self.first_name = BaseElement(driver, "First-Name", "[ng-model='fName']")
-        self.last_name = BaseElement(driver, "Last-Name", "[ng-model='lName']")
-        self.bt_add_customer = BaseElement(driver, "Add-Customer", '[class="btn btn-default"]')
-        self.alert_message = BaseElement(driver, "Alert-Message", "[ng-model='alertMessage']")
+        self.bt_addCust = BaseElement(driver, "Add-Customer", Locators.BTN_ADD_CUSTOMER_TAB)
+        self.post_code = BaseElement(driver, "Post-Code", Locators.FIELD_POST_CODE)
+        self.first_name = BaseElement(driver, "First-Name", Locators.FIELD_FIRST_NAME)
+        self.last_name = BaseElement(driver, "Last-Name", Locators.FIELD_LAST_NAME)
+        self.bt_add_customer = BaseElement(driver, "Add-Customer", Locators.BTN_ADD_CUSTOMER_SUBMIT)
+        self.alert_message = BaseElement(driver, "Alert-Message", Locators.ALERT_MESSAGE)
         
-        self.bt_open_acct = BaseElement(driver, "Open-Account", '[ng-class="btnClass2"]')
+        self.bt_open_acct = BaseElement(driver, "Open-Account", Locators.BTN_OPEN_ACCOUNT_TAB)
 
-        self.bt_customers = BaseElement(driver, "Customers", '[ng-class="btnClass3"]')
-        self.bt_sort_first_name = BaseElement(driver, "Sort-First-Name", '[ng-click="sortType = \'fName\'; sortReverse = !sortReverse"]')
-        self.row_customers = BaseElement(driver, "Row-Customers", "tr.ng-scope")
+        self.bt_customers = BaseElement(driver, "Customers", Locators.BTN_CUSTOMERS_TAB)
+        self.bt_sort_first_name = BaseElement(driver, "Sort-First-Name", Locators.BTN_SORT_FIRST_NAME)
+        self.row_customers = BaseElement(driver, "Row-Customers", Locators.ROW_CUSTOMER)
 
     def click_add_cust(self):
         self.bt_addCust.click()
@@ -50,7 +51,7 @@ class ManagerPage(BasePage):
         self.last_name.fill(value)
         return self
 
-    def alert_acept(self):
+    def alert_accept(self):
         self.alert_message.accept()
         return self
 
@@ -60,10 +61,10 @@ class ManagerPage(BasePage):
 
     def get_list_first_names(self):
         self.row_customers.wait_for_all_elements()
-        row_customers = self.driver.find_elements(By.CSS_SELECTOR, "tr.ng-scope")
+        row_customers = self.driver.find_elements(*Locators.ROW_CUSTOMER)
         names = []
         for row in range(len(row_customers)):
-            name_element = row_customers[row].find_element(By.CSS_SELECTOR, "td:nth-child(1)").text
+            name_element = row_customers[row].find_element(*Locators.FIRST_CHILD).text
             names.append(name_element)
         return names
     
@@ -73,6 +74,6 @@ class ManagerPage(BasePage):
         name_average_length = find_deleted_name(names)
         for row in range(len(names)):
             if names[row] == name_average_length:
-                delete_button = BaseElement(self.driver, "button-delete-customer", "button[ng-click*='deleteCust']")
+                delete_button = BaseElement(self.driver, "button-delete-customer", Locators.BTN_DELETE_SUBMIT)
                 delete_button.click(row)
                 return names[row]

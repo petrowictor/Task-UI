@@ -1,6 +1,7 @@
 import logging
 import random
 
+
 def get_logger(name: str) -> logging.Logger:
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
